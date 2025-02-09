@@ -1,0 +1,122 @@
+.hero {
+    height: 100vh;
+    background: linear-gradient(180deg, #f5c5f8, #e1ffea22 60%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    flex-wrap: wrap;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-left h2 {
+    color: #090909;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.hero-left p {
+    color: #171717;
+    font-size: 80px;
+    font-weight: 700;
+    margin: 5px 0;
+}
+.hero-hand-icon {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hero-hand-icon img {
+    width: 80px;
+}
+.hero-latest-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 250px;
+    height: 60px;
+    border-radius: 50px;
+    margin-top: 20px;
+    background: red;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.hero-latest-btn:hover {
+    background: darkred;
+}
+.hero-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.hero-right img {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .hero {
+        flex-direction: column;
+        height: auto;
+        padding-top: 50px;
+    }
+
+    .hero-left {
+        align-items: center;
+        padding: 0;
+    }
+
+    .hero-left p {
+        font-size: 50px;
+    }
+
+    .hero-hand-icon img {
+        width: 60px;
+    }
+
+    .hero-latest-btn {
+        width: 200px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .hero-right img {
+        width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-left p {
+        font-size: 40px;
+    }
+
+    .hero-latest-btn {
+        width: 180px;
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .hero-right img {
+        width: 280px;
+    }
+}
+

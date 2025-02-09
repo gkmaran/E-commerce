@@ -1,0 +1,99 @@
+/* Footer Section */
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, #f86283ae, #e6f56122 60%);
+    text-align: center;
+}
+
+/* Footer Logo */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-logo img {
+    width: 50px;
+}
+
+.footer-logo p {
+    color: #383838;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    color: #252525;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.footer-links li:hover {
+    color: red;
+}
+
+/* Footer Social Icons */
+.footer-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.icon-container {
+    padding: 10px;
+    background: #fbfbfb;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.icon-container:hover {
+    transform: scale(1.1);
+    background: #f0f0f0;
+}
+
+/* Copyright Section */
+.copyrights {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.copyrights hr {
+    width: 80%;
+    border: none;
+    height: 2px;
+    background: #c7c7c7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        gap: 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-logo p {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,129 @@
+/* Newsletter Section */
+.newsletter {
+    width: 65%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 0 40px;
+    margin-bottom: 150px;
+    gap: 20px;
+    background: linear-gradient(180deg, #fab9ff, #d1fcde22 60%);
+    text-align: center;
+}
+
+/* Title & Description */
+.newsletter h1 {
+    color: #454545;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.newsletter p {
+    color: #616161;
+    font-size: 18px;
+}
+
+/* Input & Button Container */
+.newsletter-input-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    width: 700px;
+    height: 70px;
+    border-radius: 80px;
+    border: 1px solid #989898;
+    overflow: hidden;
+}
+
+/* Input Field */
+.newsletter input {
+    flex: 1;
+    padding: 0 20px;
+    border: none;
+    outline: none;
+    color: #616161;
+    font-size: 16px;
+}
+
+/* Subscribe Button */
+.newsletter-input-container button {
+    width: 200px;
+    height: 70px;
+    background: black;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 0 80px 80px 0;
+    transition: 0.3s;
+}
+
+/* Hover Effect */
+.newsletter-input-container button:hover {
+    background: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .newsletter {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .newsletter h1 {
+        font-size: 24px;
+    }
+
+    .newsletter p {
+        font-size: 16px;
+    }
+
+    .newsletter-input-container {
+        width: 100%;
+        height: 60px;
+    }
+
+    .newsletter input {
+        font-size: 14px;
+    }
+
+    .newsletter-input-container button {
+        width: 150px;
+        height: 60px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .newsletter h1 {
+        font-size: 20px;
+    }
+
+    .newsletter p {
+        font-size: 14px;
+    }
+
+    .newsletter-input-container {
+        flex-direction: column;
+        border-radius: 20px;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .newsletter input {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .newsletter-input-container button {
+        width: 100%;
+        height: 45px;
+        border-radius: 10px;
+    }
+}
