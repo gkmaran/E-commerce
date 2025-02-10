@@ -1,7 +1,7 @@
 import React from 'react'
 import './NewCollection.css'
 import newcollection from '../Assets/new_collections'
-import Item from '../item/item'
+import Item from '../Item/Item'
 const NewCollection = () => {
   return (
     <div className='newcollection'>

@@ -1,7 +1,7 @@
 import React from 'react'
 import './RelatedProduct.css'
 import newcollection from '../Assets/new_collections'
-import Item from '../item/item'
+import Item from '../Item/Item'
 const RelatedProduct = () => {
   return (
     <div className='relatedproduct'>
