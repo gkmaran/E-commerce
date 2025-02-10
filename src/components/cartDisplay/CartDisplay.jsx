@@ -67,7 +67,7 @@ const CartDisplay = () => {
                 </div>
                 <div className="cartdisplay-total-item">
                     <p>GST</p>
-                    <p>{gst}</p>
+                    <p>{gst.toFixed(2)}</p>
                 </div>
                 <hr />
                 <div className="cartdisplay-total-item">

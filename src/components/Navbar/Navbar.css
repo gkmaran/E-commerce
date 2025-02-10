@@ -14,14 +14,14 @@
     font-size: 30px;
     text-transform: uppercase;
 }
-.nav-titles{
+.nav-links{
     display: flex;
     align-items: center;
     list-style: none;
     gap: 50px;
     cursor: pointer;
 }
-.nav-titles li hr{
+.nav-links li hr{
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -35,7 +35,7 @@
     align-items: center;
     gap: 30px;
 }
-.nav-titles li a{
+.nav-links li a{
     color: black;
 }
 .login-cart button:hover{
@@ -56,8 +56,27 @@
     color: white;
     border-radius: 10px;
 }
+.hamburger-menu{
+    display: none;
+    cursor: pointer;
+}
 @media (max-width:736px) {
-    .nav-titles{
+    .nav-links{
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
         display: none;
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 10px 0;
+    }
+    .nav-links.active{
+        display: flex;
+    }
+    .hamburger-menu{
+        display: block;
     }
 }
