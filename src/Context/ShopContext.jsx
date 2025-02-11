@@ -1,46 +1,90 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import all_product from "../components/Assets/all_product";
 
 export const ShopContext = createContext();
 
-const ShopContextProvider = (props) => {
+const ShopContextProvider = ({ children }) => {
   const [cartItem, setCartItem] = useState([]);
-  const [totalQuantity,setTotalQuantity]=useState(0)
-  const [totalPrice,setTotalPrice]=useState(0)  
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [message, setMessage] = useState("");
 
-  const addToCart = (product) => {
-    setCartItem((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        return [...prevCart , {...product ,quantity :1}]
-      }
-    });
-    setTotalQuantity((prevQuantity)=>prevQuantity + 1)
-    setTotalPrice((prevPrice)=>prevPrice + product.new_price)
-  };
-  const removeFromCart=(id)=>{
-    setCartItem((prevCart)=>{
-        const existingItem = prevCart.find((item) => item.id === id);
-      if (existingItem) {
-        setTotalQuantity((prevQuantity)=>prevQuantity - existingItem.quantity)
-        setTotalPrice((prevPrice)=>prevPrice - (existingItem.new_price *existingItem.quantity))
-        return prevCart.filter((item)=>item.id !== id)
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cartItem"));
+    if (savedCart) {
+      setCartItem(savedCart.cartItem);
+      setTotalQuantity(savedCart.totalQuantity);
+      setTotalPrice(savedCart.totalPrice);
     }
-        return prevCart;
-    })
-  }
+  }, []);
 
-  const contextValue = { all_product, cartItem, addToCart ,totalPrice ,totalQuantity,removeFromCart};
-  return (
-    <ShopContext.Provider value={contextValue}>
-      {props.children}
-    </ShopContext.Provider>
-  );
+  useEffect(() => {
+    if (cartItem.length > 0) {
+      localStorage.setItem(
+        "cartItem",
+        JSON.stringify({ cartItem, totalQuantity, totalPrice })
+      );
+    }
+  }, [cartItem, totalQuantity, totalPrice]);
+  // Add product to cart
+  const addToCart = (product) => {
+    let updatedCart = [...cartItem];
+    const existingItem = updatedCart.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      updatedCart.push({ ...product, quantity: 1 });
+    }
+
+    setCartItem(updatedCart);
+    setTotalQuantity((prev) => prev + 1);
+    setTotalPrice((prev) => prev + product.new_price);
+
+    setMessage("Item Added To Cart");
+    setTimeout(() => setMessage(""), 1000);
+  };
+
+  // Remove product from cart
+  const removeFromCart = (id) => {
+    const itemToRemove = cartItem.find((item) => item.id === id);
+    if (!itemToRemove) return;
+
+    const updatedCart = cartItem.filter((item) => item.id !== id);
+    setCartItem(updatedCart);
+    setTotalQuantity((prev) => prev - itemToRemove.quantity);
+    setTotalPrice((prev) => prev - itemToRemove.new_price * itemToRemove.quantity);
+  };
+
+  const updateQuantity = ({ id, quantity }) => {
+    const newQuantity = Math.max(1, quantity);
+
+    const updatedCart = cartItem.map((item) =>
+      item.id === id ? { ...item, quantity: newQuantity } : item
+    );
+
+    const oldQuantity = cartItem.find((item) => item.id === id)?.quantity || 0;
+    const priceDifference = (newQuantity - oldQuantity) * (cartItem.find((item) => item.id === id)?.new_price || 0);
+
+    setCartItem(updatedCart);
+    setTotalQuantity((prev) => prev + (newQuantity - oldQuantity));
+    setTotalPrice((prev) => prev + priceDifference);
+  };
+
+  const contextValue = {
+    all_product,
+    cartItem,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    totalPrice,
+    totalQuantity,
+    message,
+  };
+
+  return <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>;
 };
 
 export default ShopContextProvider;
+
+

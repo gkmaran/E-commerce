@@ -80,3 +80,8 @@
         display: block;
     }
 }
+@media (max-width:360px) {
+    .nav-logo p{
+        font-size: 15px;
+    }
+}

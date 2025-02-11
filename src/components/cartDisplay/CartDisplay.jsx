@@ -4,7 +4,7 @@ import { ShopContext } from '../../Context/ShopContext';
 import remove_icon from '../Assets/cart_cross_icon.png';
 
 const CartDisplay = () => {
-  const { cartItem, totalPrice, removeFromCart } = useContext(ShopContext);
+  const { cartItem, totalPrice, removeFromCart ,updateQuantity} = useContext(ShopContext);
   const gstRate=0.18;
   const gst=totalPrice*gstRate;
   const total=totalPrice + gst ;
@@ -31,7 +31,11 @@ const CartDisplay = () => {
                 </td>
                 <td>{item.name}</td>
                 <td>${item.new_price}</td>
-                <td>{item.quantity}</td>
+                <td>
+                  <button className="quantity-btn" onClick={() => updateQuantity({ id: item.id, quantity: Math.max(1, item.quantity - 1) })}>-</button>
+                  {item.quantity}
+                  <button className="quantity-btn" onClick={() => updateQuantity({ id: item.id, quantity: item.quantity + 1 })}>+</button>
+                </td>
                 <td>${(item.new_price * item.quantity).toFixed(2)}</td>
                 <td>
                   <img onClick={() => removeFromCart(item.id)} className="cartdisplay-remove" src={remove_icon} alt="Remove" />
@@ -48,11 +52,6 @@ const CartDisplay = () => {
         </tbody>
       </table>
 
-      {/* {cartItem.length > 0 && (
-        <div className="cartdisplay-total">
-          <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
-        </div>
-      )} */}
       <div className="cartdisplay-down">
         <div className="cartdisplay-total">
             <h1>Cart Totals</h1>
