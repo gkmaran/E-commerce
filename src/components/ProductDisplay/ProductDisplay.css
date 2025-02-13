@@ -125,11 +125,29 @@
 .productdisplay-right button:hover {
     background: #d12e2e;
 }
-.cartaddedmsg{
-    font-size: 20px;
+.cartaddedmsg {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #27ae60; 
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
     font-weight: bold;
-    color: green;
-}
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 2s ease-in-out;
+    z-index: 1000;
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  }
+  
 
 /* Responsive Design */
 @media (max-width: 1024px) {

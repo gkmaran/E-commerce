@@ -139,7 +139,88 @@
     font-size: 24px;
     color: #777;
   }
+  .updatequantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   
+  .quantity-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .quantity-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .updatequantity span {
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+  }
+  .toast-message {
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e74c3c; /* Red warning color */
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 2s ease-in-out;
+    z-index: 1000;
+  }.toast-message {
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e74c3c; .toast-message {
+      position: fixed;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #e74c3c; /* Red warning color */
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: fadeInOut 2s ease-in-out;
+      z-index: 1000;
+    }
+  
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+      10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    }
+    
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 2s ease-in-out;
+    z-index: 1000;
+  }
   @media (max-width: 768px) {
     th, td {
       padding: 8px;

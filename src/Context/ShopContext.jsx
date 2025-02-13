@@ -12,11 +12,12 @@ const ShopContextProvider = ({ children }) => {
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cartItem"));
     if (savedCart) {
-      setCartItem(savedCart.cartItem);
-      setTotalQuantity(savedCart.totalQuantity);
-      setTotalPrice(savedCart.totalPrice);
+      setCartItem(savedCart.cartItem || []);
+      setTotalQuantity(savedCart.totalQuantity || 0);
+      setTotalPrice(savedCart.totalPrice || 0);
     }
-  }, []);
+  }, []); 
+
 
   useEffect(() => {
     if (cartItem.length > 0) {
@@ -26,7 +27,7 @@ const ShopContextProvider = ({ children }) => {
       );
     }
   }, [cartItem, totalQuantity, totalPrice]);
-  // Add product to cart
+
   const addToCart = (product) => {
     let updatedCart = [...cartItem];
     const existingItem = updatedCart.find((item) => item.id === product.id);
@@ -37,23 +38,28 @@ const ShopContextProvider = ({ children }) => {
       updatedCart.push({ ...product, quantity: 1 });
     }
 
+    const newTotalQuantity = updatedCart.reduce((sum, item) => sum + item.quantity, 0);
+    const newTotalPrice = updatedCart.reduce((sum, item) => sum + item.quantity * item.new_price, 0);
+
     setCartItem(updatedCart);
-    setTotalQuantity((prev) => prev + 1);
-    setTotalPrice((prev) => prev + product.new_price);
+    setTotalQuantity(newTotalQuantity);
+    setTotalPrice(newTotalPrice);
 
     setMessage("Item Added To Cart");
     setTimeout(() => setMessage(""), 1000);
   };
 
-  // Remove product from cart
   const removeFromCart = (id) => {
-    const itemToRemove = cartItem.find((item) => item.id === id);
-    if (!itemToRemove) return;
-
     const updatedCart = cartItem.filter((item) => item.id !== id);
+
+    const newTotalQuantity = updatedCart.reduce((sum, item) => sum + item.quantity, 0);
+    const newTotalPrice = updatedCart.reduce((sum, item) => sum + item.quantity * item.new_price, 0);
+
     setCartItem(updatedCart);
-    setTotalQuantity((prev) => prev - itemToRemove.quantity);
-    setTotalPrice((prev) => prev - itemToRemove.new_price * itemToRemove.quantity);
+    setTotalQuantity(newTotalQuantity);
+    setTotalPrice(newTotalPrice);
+
+    localStorage.setItem("cartItem", JSON.stringify({ cartItem: updatedCart, totalQuantity: newTotalQuantity, totalPrice: newTotalPrice }));
   };
 
   const updateQuantity = ({ id, quantity }) => {
@@ -63,12 +69,14 @@ const ShopContextProvider = ({ children }) => {
       item.id === id ? { ...item, quantity: newQuantity } : item
     );
 
-    const oldQuantity = cartItem.find((item) => item.id === id)?.quantity || 0;
-    const priceDifference = (newQuantity - oldQuantity) * (cartItem.find((item) => item.id === id)?.new_price || 0);
+    const newTotalQuantity = updatedCart.reduce((sum, item) => sum + item.quantity, 0);
+    const newTotalPrice = updatedCart.reduce((sum, item) => sum + item.quantity * item.new_price, 0);
 
     setCartItem(updatedCart);
-    setTotalQuantity((prev) => prev + (newQuantity - oldQuantity));
-    setTotalPrice((prev) => prev + priceDifference);
+    setTotalQuantity(newTotalQuantity);
+    setTotalPrice(newTotalPrice);
+
+    localStorage.setItem("cartItem", JSON.stringify({ cartItem: updatedCart, totalQuantity: newTotalQuantity, totalPrice: newTotalPrice }));
   };
 
   const contextValue = {
@@ -86,5 +94,6 @@ const ShopContextProvider = ({ children }) => {
 };
 
 export default ShopContextProvider;
+
 
 

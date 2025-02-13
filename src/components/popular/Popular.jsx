@@ -1,7 +1,7 @@
 import React from 'react'
 import './Popular.css'
 import data from '../Assets/data'
-import Item from '../Item/Item'
+import Item from '../item/Item'
 const Popular = () => {
   return (
     <div className='popular'>
